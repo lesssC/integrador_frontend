@@ -13,8 +13,7 @@ RUN npm install
 COPY . .
 
 # Compilar la aplicación para producción
-RUN npm run build
-
+RUN npx vite build
 # Etapa 2: Servidor web de producción
 FROM nginx:stable-alpine
 
