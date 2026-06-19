@@ -58,15 +58,16 @@ export function InboxPage() {
                   <th>ID</th>
                   <th>Tipo</th>
                   <th>Fecha/Hora</th>
+                  <th>Estado</th>
                   <th>Descripción</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
-                  <tr><td colSpan={5} style={{ textAlign: 'center', padding: '2rem' }}>Cargando denuncias...</td></tr>
+                  <tr><td colSpan={6} style={{ textAlign: 'center', padding: '2rem' }}>Cargando denuncias...</td></tr>
                 ) : denuncias.length === 0 ? (
-                  <tr><td colSpan={5} style={{ textAlign: 'center', padding: '2rem' }}>No hay reportes ciudadanos pendientes en cuarentena.</td></tr>
+                  <tr><td colSpan={6} style={{ textAlign: 'center', padding: '2rem' }}>No hay reportes ciudadanos pendientes en cuarentena.</td></tr>
                 ) : (
                   denuncias.map((d) => (
                     <tr key={d.id_denuncia_ciudadana}>
@@ -77,6 +78,11 @@ export function InboxPage() {
                         </span>
                       </td>
                       <td>{d.fecha_delito} {d.hora_delito}</td>
+                      <td>
+                        <span className="dash-badge dash-badge--warning">
+                          {d.estado || 'PENDIENTE'}
+                        </span>
+                      </td>
                       <td style={{ maxWidth: '300px', whiteSpace: 'normal', overflowWrap: 'break-word' }}>
                         {d.descripcion}
                       </td>
